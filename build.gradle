@@ -9,13 +9,6 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
-task stage {
-	dependsOn build
-	doLast {
-		delete fileTree(dir: "build", exclude: "libs")
-		delete fileTree(dir: "build/libs", exclude: "*.jar")
-	}
-}
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -27,6 +20,14 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+}
+
+task stage {
+	dependsOn build
+	doLast {
+		delete fileTree(dir: "build", exclude: "libs")
+		delete fileTree(dir: "build/libs", exclude: "*.jar")
+	}
 }
 
 dependencies {
